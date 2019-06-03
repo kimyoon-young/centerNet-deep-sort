@@ -25,7 +25,10 @@ class DeepSort(object):
 
 
         # generate detections
-        features = self._get_features(bbox_xywh, ori_img)
+        try :
+            features = self._get_features(bbox_xywh, ori_img)
+        except :
+            print('a')
         detections = [Detection(bbox_xywh[i], conf, features[i]) for i,conf in enumerate(confidences) if conf>self.min_confidence]
 
 
@@ -61,6 +64,8 @@ class DeepSort(object):
     # for centernet (x1,x2 w,h -> x1,y1,x2,y2)
     def _xywh_to_xyxy_centernet(self, bbox_xywh):
         x1,y1,w,h = bbox_xywh
+        x1 = max(x1,0)
+        y1 = max(y1,0)
         x2 = min(int(x1+w),self.width-1)
         y2 = min(int(y1+h),self.height-1)
         return int(x1),int(y1),x2,y2
