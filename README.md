@@ -11,8 +11,10 @@ pip install -r requirments.txt
 ```
 
 # Test results (1080ti 11G)
-For my FHD video (30fps), 
-fps 17~20 compared to fps 8 from original yolov3 version[2]
+
+![Alt Text](https://github.com/kimyoon-young/centerNet-deep-sort/blob/master/centernet_vs_yolo3.gif)
+
+(centernet based) fps 17~20 compared to fps 8 from original yolov3 version[2]
 
 
 
