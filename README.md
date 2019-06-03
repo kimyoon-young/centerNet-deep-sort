@@ -1,6 +1,6 @@
 # centerNet + deep sort with pytorch 
 
-This code is centerNet[1] version of yolov + deepsort[2], which implemented on CUDA 9.0, ubuntu 16.04, and python 3.6.
+This code is [centerNet[1]](https://github.com/xingyizhou/CenterNet) version of [yolov + deepsort[2]](https://github.com/Qidian213/deep_sort_yolov3), which implemented on CUDA 9.0, ubuntu 16.04, and python 3.6.
 
 
 # Install
@@ -8,6 +8,16 @@ This code is centerNet[1] version of yolov + deepsort[2], which implemented on C
 ```
 conda create -f CenterNet.yml
 pip install -r requirments.txt
+```
+
+
+# Run
+
+In test step, we used 'ctdet_coco_dla_2x.pth' model in [centernet model zoo](https://github.com/xingyizhou/CenterNet/blob/master/readme/MODEL_ZOO.md)   
+
+
+```
+python demo_centernet_deepsort.py
 ```
 
 # Test speed
@@ -20,5 +30,5 @@ GPU : 1080ti 11G
 
 
 # Reference
-[1] https://github.com/xingyizhou/CenterNet
+[1] https://github.com/xingyizhou/CenterNet   
 [2] https://github.com/Qidian213/deep_sort_yolov3
