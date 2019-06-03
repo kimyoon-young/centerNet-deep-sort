@@ -22,11 +22,11 @@ python demo_centernet_deepsort.py
 
 # Test speed
 
-GPU : 1080ti 11G
+GPU : one 1080ti 11G
 
 ![Alt Text](https://github.com/kimyoon-young/centerNet-deep-sort/blob/master/centernet_vs_yolo3.gif)
 
-(left) CenterNet based tracker: fps 18~23 / (right) original yolov3 version[2] : fps 8~9 
+(Left) CenterNet based tracker: fps 18-23  /  (Rright) original yolov3 version[2] : fps 8-9 
 
 
 # Reference
