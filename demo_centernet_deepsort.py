@@ -53,8 +53,10 @@ class Detector(object):
 
     def detect(self):
         xmin, ymin, xmax, ymax = self.area
+        frame_no = 0
         while self.vdo.grab():
 
+            frame_no +=1
             start = time.time()
             _, ori_im = self.vdo.retrieve()
             im = ori_im[ymin:ymax, xmin:xmax, (2, 1, 0)]
@@ -78,6 +80,9 @@ class Detector(object):
 
 
             cls_conf = bbox[:, 4]
+
+            if frame_no == 10 :
+                print('a')
             outputs = self.deepsort.update(bbox[:,:4], cls_conf, im)
 
 
@@ -112,5 +117,5 @@ if __name__ == "__main__":
     det = Detector(opt)
 
     # det.open("D:\CODE\matlab sample code/season 1 episode 4 part 5-6.mp4")
-    det.open("NVR_ch1_main_20190416140900_20190416141900.asf")
+    det.open("MOT16-11.mp4")
     det.detect()

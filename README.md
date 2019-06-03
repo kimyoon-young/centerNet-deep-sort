@@ -10,12 +10,13 @@ conda create -f CenterNet.yml
 pip install -r requirments.txt
 ```
 
-# Test results (1080ti 11G)
+# Test speed
+
+GPU : 1080ti 11G
 
 ![Alt Text](https://github.com/kimyoon-young/centerNet-deep-sort/blob/master/centernet_vs_yolo3.gif)
 
-(centernet based) fps 17~20 compared to fps 8 from original yolov3 version[2]
-
+(left) CenterNet based tracker: fps 18~23 / (right) original yolov3 version[2] : fps 8~9 
 
 
 # Reference
