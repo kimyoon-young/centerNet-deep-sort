@@ -20,7 +20,8 @@ In test step, we used 'ctdet_coco_dla_2x.pth' model in [centernet model zoo](htt
 python demo_centernet_deepsort.py
 ```
 
-# Speed comparison (centerNet vs yolov3)
+# Model Performance 
+## Speed comparison (centerNet vs yolov3)
 
 GPU : one 1080ti 11G
 
@@ -28,8 +29,9 @@ GPU : one 1080ti 11G
 
 (Left) CenterNet based tracker: fps 18-23  /  (Rright) original yolov3 version[2] : fps 8-9 
 
-
-# Model performance
+   
+   
+## Average precision
 
 We use evaluate person class AP using modified tools/cocoeval.py from cocoapi/PythonAPI/pycocotools/cocoeval.py 
 
