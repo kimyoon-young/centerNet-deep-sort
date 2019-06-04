@@ -32,7 +32,7 @@ GPU : one 1080ti 11G
 
 Additionally, fps 30~35 for ctdet_coco_resdcn18 model
    
-## Average precision
+## person class AP
 
 We use evaluate person class AP using modified tools/cocoeval.py from cocoapi/PythonAPI/pycocotools/cocoeval.py    
 
