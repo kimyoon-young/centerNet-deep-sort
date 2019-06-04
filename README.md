@@ -33,13 +33,11 @@ GPU : one 1080ti 11G
    
 ## Average precision
 
-We use evaluate person class AP using modified tools/cocoeval.py from cocoapi/PythonAPI/pycocotools/cocoeval.py 
+We use evaluate person class AP using modified tools/cocoeval.py from cocoapi/PythonAPI/pycocotools/cocoeval.py    
 
 dataset: [coco 2017 Val images](http://cocodataset.org/#download)
 
 
-(person) AP : 51.1
-(all) AP : 37.4
 
 | model  | (person) AP | (all classes) mAP | fps |
 | ------------- | ------------- | ------------- | ------------- |
