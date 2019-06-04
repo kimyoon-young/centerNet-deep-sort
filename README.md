@@ -29,7 +29,8 @@ GPU : one 1080ti 11G
 
 (Left) CenterNet based tracker: fps 18-23  /  (Rright) original yolov3 version[2] : fps 8-9 
 
-   
+
+Additionally, fps 30~35 for ctdet_coco_resdcn18 model
    
 ## Average precision
 
@@ -39,10 +40,10 @@ dataset: [coco 2017 Val images](http://cocodataset.org/#download)
 
 
 
-| model  | (person) AP | (all classes) mAP | fps |
-| ------------- | ------------- | ------------- | ------------- |
-| ctdet_coco_dla_2x.pth | 51.1 | 37.4 | 18~23 |
-| ctdet_coco_resdcn18 | 41.1 | 28.0 | 30~35 |
+| model  | (person) AP | (all classes) mAP |
+| ------------- | ------------- | ------------- |
+| ctdet_coco_dla_2x | 51.1 | 37.4 |
+| ctdet_coco_resdcn18 | 41.1 | 28.0 | 
 
 
 
