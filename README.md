@@ -20,6 +20,19 @@ In test step, we used 'ctdet_coco_dla_2x.pth' model in [centernet model zoo](htt
 python demo_centernet_deepsort.py
 ```
 
+If one use another model, change two lines as below.
+
+```
+#MODEL_PATH = './CenterNet/models/ctdet_coco_dla_2x.pth'
+#ARCH = 'dla_34'
+
+to
+
+MODEL_PATH = './CenterNet/models/ctdet_coco_resdcn18.pth'
+ARCH = 'resdcn_18'
+```
+
+
 # Model Performance 
 ## Speed comparison (centerNet vs yolov3)
 
