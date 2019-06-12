@@ -19,7 +19,8 @@ python demo_centernet_deepsort.py
 ```
 
 In test step, we used 'ctdet_coco_dla_2x.pth' model in [centernet model zoo](https://github.com/xingyizhou/CenterNet/blob/master/readme/MODEL_ZOO.md)   
-If one uses another model, change two lines as below.
+
+change two lines if want to use another model(e.g resdcn18.pth).
 
 ```
 #MODEL_PATH = './CenterNet/models/ctdet_coco_dla_2x.pth'
