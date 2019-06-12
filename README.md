@@ -13,14 +13,13 @@ pip install -r requirments.txt
 
 # Run
 
-In test step, we used 'ctdet_coco_dla_2x.pth' model in [centernet model zoo](https://github.com/xingyizhou/CenterNet/blob/master/readme/MODEL_ZOO.md)   
-
 
 ```
 python demo_centernet_deepsort.py
 ```
 
-If one use another model, change two lines as below.
+In test step, we used 'ctdet_coco_dla_2x.pth' model in [centernet model zoo](https://github.com/xingyizhou/CenterNet/blob/master/readme/MODEL_ZOO.md)   
+If one uses another model, change two lines as below.
 
 ```
 #MODEL_PATH = './CenterNet/models/ctdet_coco_dla_2x.pth'
