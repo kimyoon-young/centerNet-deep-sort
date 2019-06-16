@@ -19,7 +19,6 @@ python demo_centernet_deepsort.py
 ```
 
 In test step, we used 'ctdet_coco_dla_2x.pth' model in [centernet model zoo](https://github.com/xingyizhou/CenterNet/blob/master/readme/MODEL_ZOO.md).   
-
 Change two lines if want to use another model(e.g resdcn18.pth).
 
 ```
@@ -47,7 +46,7 @@ Additionally, fps 30~35 for ctdet_coco_resdcn18 model
    
 ## person detection evalution
 
-[coco API](https://github.com/cocodataset/cocoapi) provides the mAP evaluation code on coco dataset. So we changed that code slightly to evaluate AP for person class (line 458-464 in 'cocoapi/PythonAPI/pycocotools/cocoeval.py' same as ''tools.cocoeval.py').
+[coco API](https://github.com/cocodataset/cocoapi) provides the mAP evaluation code on coco dataset. So we changed that code slightly to evaluate AP for person class (line 458-464 in 'cocoapi/PythonAPI/pycocotools/cocoeval.py' same as **'tools/cocoeval.py'**).
 
 
 The result is like below.   
