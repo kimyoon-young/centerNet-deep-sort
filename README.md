@@ -11,9 +11,9 @@ pip install -r requirments.txt
 ```
 
 
-# Run
+# Quick Start
 
-
+Using sample video, we can track multi person.   
 ```
 python demo_centernet_deepsort.py
 ```
@@ -47,7 +47,7 @@ Additionally, fps 30~35 for ctdet_coco_resdcn18 model
    
 ## person detection evalution
 
-coco API provides the mAP evaluation code on coco dataset. So we changed that code slightly to evaluate AP for person class (line 458-464 in 'cocoapi/PythonAPI/pycocotools/cocoeval.py' same as ''tools.cocoeval.py').
+[coco API](https://github.com/cocodataset/cocoapi) provides the mAP evaluation code on coco dataset. So we changed that code slightly to evaluate AP for person class (line 458-464 in 'cocoapi/PythonAPI/pycocotools/cocoeval.py' same as ''tools.cocoeval.py').
 
 
 The result is like below.   
