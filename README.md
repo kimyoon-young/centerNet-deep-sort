@@ -1,9 +1,10 @@
 # centerNet + deep sort with pytorch 
 
-This code is [centerNet[1]](https://github.com/xingyizhou/CenterNet) version of [yolov + deepsort[2]](https://github.com/Qidian213/deep_sort_yolov3), which implemented on CUDA 9.0, ubuntu 16.04, and python 3.6.
+This code is [centerNet[1]](https://github.com/xingyizhou/CenterNet) version of [yolov + deepsort[2]](https://github.com/Qidian213/deep_sort_yolov3), which implemented on CUDA 9.0, ubuntu 16.04, and Anaconda python 3.6.
 
 
 # Install
+
 
 ```
 conda create -f CenterNet.yml
