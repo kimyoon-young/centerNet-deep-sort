@@ -7,7 +7,7 @@ This code is [centerNet[1]](https://github.com/xingyizhou/CenterNet) version of 
 
 
 ```
-conda create -f CenterNet.yml
+conda env create -f CenterNet.yml
 pip install -r requirments.txt
 ```
 
