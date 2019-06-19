@@ -14,7 +14,21 @@ pip install -r requirments.txt
 
 # Quick Start
 
+1. Change CENTERNET_ROOT to your local directory
+
+```
+CENTERNET_PATH = 'CENTERNET_ROOT/CenterNet/src/lib/'
+
+to
+
+e.g) CENTERNET_PATH = '/home/kyy/centerNet-deep-sort/CenterNet/src/lib/'
+```
+
+
+2. Run demo 
+
 Using sample video, we can track multi person.   
+
 ```
 python demo_centernet_deepsort.py
 ```
