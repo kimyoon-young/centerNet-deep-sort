@@ -14,7 +14,7 @@ pip install -r requirments.txt
 
 # Quick Start
 
-1. Change CENTERNET_ROOT to your local directory
+1. Change CENTERNET_ROOT to your local directory in demo_centernet_deepsort.py.
 
 ```
 CENTERNET_PATH = 'CENTERNET_ROOT/CenterNet/src/lib/'
