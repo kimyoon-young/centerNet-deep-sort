@@ -2,18 +2,26 @@ import os
 import cv2
 import numpy as np
 
-from YOLO3 import YOLO3
-#CenterNet
 import sys
-CENTERNET_PATH = '/home/asoft/deep-sort+CenterNet/CenterNet/src/lib/'
+
+#Change path your local directory
+CENTERNET_PATH = 'CENTERNET_ROOT/CenterNet/src/lib/'
 sys.path.insert(0, CENTERNET_PATH)
 from detectors.detector_factory import detector_factory
 from opts import opts
 
 
 MODEL_PATH = './CenterNet/models/ctdet_coco_dla_2x.pth'
+ARCH = 'dla_34'
+
+#MODEL_PATH = './CenterNet/models/ctdet_coco_resdcn18.pth'
+#ARCH = 'resdcn_18'
+
+
+
+
 TASK = 'ctdet' # or 'multi_pose' for human pose estimation
-opt = opts().init('{} --load_model {}'.format(TASK, MODEL_PATH).split(' '))
+opt = opts().init('{} --load_model {} --arch {}'.format(TASK, MODEL_PATH, ARCH).split(' '))
 
 image_ext = ['jpg', 'jpeg', 'png', 'webp']
 video_ext = ['mp4', 'mov', 'avi', 'mkv']
@@ -29,15 +37,12 @@ import time
 class Detector(object):
     def __init__(self, opt):
         self.vdo = cv2.VideoCapture()
-        #self.yolo_info = YOLO3("YOLO3/cfg/yolo_v3.cfg", "YOLO3/yolov3.weights", "YOLO3/cfg/coco.names", is_xywh=True)
-
+      
 
         #centerNet detector
         self.detector = detector_factory[opt.task](opt)
         self.deepsort = DeepSort("deep/checkpoint/ckpt.t7")
-        # self.deepsort = DeepSort("deep/checkpoint/ori_net_last.pth")
-
-
+     
         self.write_video = True
 
     def open(self, video_path):
