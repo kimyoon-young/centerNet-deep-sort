@@ -87,4 +87,4 @@ Average Precision (AP) @[ IoU=0.50:0.95 | area= all | maxDets=100 ] = 0.280 #ori
 
 # Reference
 [1] https://github.com/xingyizhou/CenterNet   
-[2] https://github.com/Qidian213/deep_sort_yolov3
+[2] https://github.com/ZQPei/deep_sort_pytorch
