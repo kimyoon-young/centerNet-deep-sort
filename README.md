@@ -1,7 +1,6 @@
 # centerNet + deep sort with pytorch 
 
-This code is [centerNet[1]](https://github.com/xingyizhou/CenterNet) version of [yolov + deepsort[2]](https://github.com/ZQPei/deep_sort_pytorch), which implemented on CUDA 9.0, ubuntu 16.04, and Anaconda python 3.6.
-
+This is multi-people tracking code ( [centerNet[1]](https://github.com/xingyizhou/CenterNet) version of [yolov + deepsort[2]](https://github.com/ZQPei/deep_sort_pytorch) ), which implemented on CUDA 9.0, ubuntu 16.04, and Anaconda python 3.6. We used CenterNet for real-time object tracking.
 
 # Install
 
@@ -59,14 +58,13 @@ GPU : one 1080ti 11G
 
 Additionally, fps 30~35 for ctdet_coco_resdcn18 model
    
-## person detection evalution
+## Person detection evalution
 
 [coco API](https://github.com/cocodataset/cocoapi) provides the mAP evaluation code on coco dataset. So we changed that code slightly to evaluate AP for person class (line 458-464 in 'cocoapi/PythonAPI/pycocotools/cocoeval.py' same as **'tools/cocoeval.py'**).
 
-
 The result is like below.   
 
-dataset : [coco 2017 Val images](http://cocodataset.org/#download).   
+dataset : [coco 2017 train / val](http://cocodataset.org/#download).   
 model : ctdet_coco_resdcn18 model   
 
 ```
@@ -77,14 +75,20 @@ category : 79 : 0.04993736566987926
 Average Precision (AP) @[ IoU=0.50:0.95 | area= all | maxDets=100 ] = 0.280 #original
 ```    
 
+**AP50 comparsion** 
 
-| model  | (person) AP | (all classes) mAP |
+| model  | (person) AP50 | (all classes) AP50 |
 | ------------- | ------------- | ------------- |
-| ctdet_coco_dla_2x | 51.1 | 37.4 |
-| ctdet_coco_resdcn18 | 41.1 | 28.0 | 
+| ctdet_coco_dla_2x | 77.30 | 55.13 |
+| ctdet_coco_resdcn18 | 68.24 | 44.9 | 
+| yolov3 416* | 65.02 | 48.54 |  
 
 
+*we train and evaluate [yolov3 model](https://drive.google.com/file/d/1izRyBvQ3gYiDZDtHT7PEaQMCgmAsq9XB/view?usp=sharing) using [coco 2017 train / val dataset](http://cocodataset.org/#download) and [AlexeyAB/darknet](https://github.com/AlexeyAB/darknet) code (iteration number : 161K (2000 x 80 class), loss : 2.8xx, batch size: 64, subdivision : 16). 
 
 # Reference
 [1] https://github.com/xingyizhou/CenterNet   
-[2] https://github.com/ZQPei/deep_sort_pytorch
+[2] https://github.com/ZQPei/deep_sort_pytorch   
+[3] https://github.com/AlexeyAB/darknet   
+
+
