@@ -1,0 +1,7 @@
+classes= 80
+train  = /home/kyy/data/coco/train2017_images.txt
+valid  = /home/kyy/data/coco/val2017_images.txt
+names = /home/kyy/data/coco.names
+backup = /home/kyy/darknet/backup/
+eval=coco
+
