@@ -81,10 +81,10 @@ Average Precision (AP) @[ IoU=0.50:0.95 | area= all | maxDets=100 ] = 0.280 #ori
 | ------------- | ------------- | ------------- |
 | ctdet_coco_dla_2x | 77.30 | 55.13 |
 | ctdet_coco_resdcn18 | 68.24 | 44.9 | 
-| yolov3 416* | 65.02 | 48.54 |  
+| *yolov3 416 | 66.99 | 49.02 |  
 
 
-*we train and evaluate [yolov3 model](https://drive.google.com/file/d/1izRyBvQ3gYiDZDtHT7PEaQMCgmAsq9XB/view?usp=sharing) using [coco 2017 train / val dataset](http://cocodataset.org/#download) and [AlexeyAB/darknet](https://github.com/AlexeyAB/darknet) code (iteration number : 161K (2000 x 80 class), loss : 2.8xx, batch size: 64, subdivision : 16). 
+*we train and evaluate [yolov3 model](https://drive.google.com/file/d/1PIGdBHmtUu3DKxBhqmW2gfj1ujLRzZcR/view?usp=sharing) using [coco 2017 train / val dataset](http://cocodataset.org/#download) and [AlexeyAB/darknet](https://github.com/AlexeyAB/darknet) code (iteration number : 200K , avg loss : 2.8xx, batch size: 64, subdivision : 16 // in case of 161K (2000 x 80 class) [model](https://drive.google.com/file/d/1izRyBvQ3gYiDZDtHT7PEaQMCgmAsq9XB/view?usp=sharing), AP50 is 65.02 (person) / 48.54 (all classes)). 
 
 # Reference
 [1] https://github.com/xingyizhou/CenterNet   
