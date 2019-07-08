@@ -64,7 +64,7 @@ class Detector(object):
             frame_no +=1
             start = time.time()
             _, ori_im = self.vdo.retrieve()
-            im = ori_im[ymin:ymax, xmin:xmax, (2, 1, 0)]
+            im = ori_im[ymin:ymax, xmin:xmax]
 
 
             #start_center =  time.time()
@@ -86,8 +86,7 @@ class Detector(object):
 
             cls_conf = bbox[:, 4]
 
-            if frame_no == 10 :
-                print('a')
+
             outputs = self.deepsort.update(bbox[:,:4], cls_conf, im)
 
 
