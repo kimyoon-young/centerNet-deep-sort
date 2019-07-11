@@ -55,14 +55,38 @@ GPU : one 1080ti 11G
 
 (Left) CenterNet based tracker: fps 18-23  /  (Rright) original yolov3 version[2] : fps 8-9 
 
+For ctdet_coco_resdcn18 model, fps is 30~35. 
 
-Additionally, fps 30~35 for ctdet_coco_resdcn18 model
+Optionally, using this [treading module[4]](https://www.pyimagesearch.com/2017/02/06/faster-video-file-fps-with-cv2-videocapture-and-opencv/) can slightly improves fps (from 0.4 to 1).
+
+```
+pip install imutils
+```
+
+and modified read and more fuction in filevideostream.py as below.
+
+```
+def read(self):
+	return self.Q.get(block=True, timeout=2.0)
+
+def more(self):
+	#return True if there are still frames in the queue. If stream is not stopped, try to wait a moment
+	return not self.stopped
+
+```
+
+ 
+
+```
+python demo_centernet_deepsort_thread.py
+```
+
    
 ## Person detection evalution
 
 [coco API](https://github.com/cocodataset/cocoapi) provides the mAP evaluation code on coco dataset. So we changed that code slightly to evaluate AP for person class (line 458-464 in 'cocoapi/PythonAPI/pycocotools/cocoeval.py' same as **'tools/cocoeval.py'**).
 
-The result is like below.   
+The result is as below.   
 
 dataset : [coco 2017 train / val](http://cocodataset.org/#download).   
 model : ctdet_coco_resdcn18 model   
@@ -86,9 +110,22 @@ Average Precision (AP) @[ IoU=0.50:0.95 | area= all | maxDets=100 ] = 0.280 #ori
 
 *we train and evaluate [yolov3 model](https://drive.google.com/file/d/1PIGdBHmtUu3DKxBhqmW2gfj1ujLRzZcR/view?usp=sharing) using [coco 2017 train / val dataset](http://cocodataset.org/#download) and [AlexeyAB/darknet](https://github.com/AlexeyAB/darknet) code (iteration number : 200K , avg loss : 2.8xx, batch size: 64, subdivision : 16 // in case of 161K (2000 x 80 class) [model](https://drive.google.com/file/d/1izRyBvQ3gYiDZDtHT7PEaQMCgmAsq9XB/view?usp=sharing), AP50 is 65.02 (person) / 48.54 (all classes)). 
 
+
+## MOT16 performance
+
+
+| model  | (person) AP50 | (all classes) AP50 |
+| ------------- | ------------- | ------------- |
+| ctdet_coco_dla_2x | 77.30 | 55.13 |
+| ctdet_coco_resdcn18 | 68.24 | 44.9 | 
+| *yolov3 416 | 66.99 | 49.02 |  
+ 
+
 # Reference
 [1] https://github.com/xingyizhou/CenterNet   
 [2] https://github.com/ZQPei/deep_sort_pytorch   
 [3] https://github.com/AlexeyAB/darknet   
+[4] https://www.pyimagesearch.com/2017/02/06/faster-video-file-fps-with-cv2-videocapture-and-opencv/   
+
 
 
