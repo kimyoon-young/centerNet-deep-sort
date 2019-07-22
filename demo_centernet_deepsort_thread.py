@@ -112,15 +112,14 @@ class Detector(object):
             results = self.detector.run(im)['results']
             bbox_xywh, cls_conf = bbox_to_xywh_cls_conf(results)
 
+            if bbox_xywh is not None:
 
-            outputs = self.deepsort.update(bbox_xywh, cls_conf, im)
+                outputs = self.deepsort.update(bbox_xywh, cls_conf, im)
 
-
-
-            if len(outputs) > 0:
-                bbox_xyxy = outputs[:, :4]
-                identities = outputs[:, -1]
-                ori_im = draw_bboxes(ori_im, bbox_xyxy, identities, offset=(xmin, ymin))
+                if len(outputs) > 0:
+                    bbox_xyxy = outputs[:, :4]
+                    identities = outputs[:, -1]
+                    ori_im = draw_bboxes(ori_im, bbox_xyxy, identities, offset=(xmin, ymin))
 
 
             end = time.time()

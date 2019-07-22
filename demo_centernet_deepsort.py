@@ -5,7 +5,7 @@ import numpy as np
 
 #CenterNet
 import sys
-CENTERNET_PATH = 'CENTERNET_ROOT/deep-sort+CenterNet/CenterNet/src/lib/'
+CENTERNET_PATH = '/home/asoft/deep-sort+CenterNet/CenterNet/src/lib/'
 sys.path.insert(0, CENTERNET_PATH)
 from detectors.detector_factory import detector_factory
 from opts import opts
@@ -100,15 +100,13 @@ class Detector(object):
             results = self.detector.run(im)['results']
             bbox_xywh, cls_conf = bbox_to_xywh_cls_conf(results)
 
+            if bbox_xywh is not None:
+                outputs = self.deepsort.update(bbox_xywh, cls_conf, im)
 
-            outputs = self.deepsort.update(bbox_xywh, cls_conf, im)
-
-
-
-            if len(outputs) > 0:
-                bbox_xyxy = outputs[:, :4]
-                identities = outputs[:, -1]
-                ori_im = draw_bboxes(ori_im, bbox_xyxy, identities, offset=(xmin, ymin))
+                if len(outputs) > 0:
+                    bbox_xyxy = outputs[:, :4]
+                    identities = outputs[:, -1]
+                    ori_im = draw_bboxes(ori_im, bbox_xyxy, identities, offset=(xmin, ymin))
 
 
             end = time.time()
