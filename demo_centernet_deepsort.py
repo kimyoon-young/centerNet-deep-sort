@@ -5,7 +5,7 @@ import numpy as np
 
 #CenterNet
 import sys
-CENTERNET_PATH = '/home/asoft/deep-sort+CenterNet/CenterNet/src/lib/'
+CENTERNET_PATH = '/home/asoft/centerNet-deep-sort/CenterNet/src/lib/'
 sys.path.insert(0, CENTERNET_PATH)
 from detectors.detector_factory import detector_factory
 from opts import opts
@@ -18,17 +18,29 @@ ARCH = 'dla_34'
 #ARCH = 'resdcn_18'
 
 
-#python test.py ctdet --exp_id coco_resdcn18 --arch resdcn_18 --keep_res --resume
-#python test.py ctdet --exp_id coco_dla_2x --keep_res --resume
-
-
 
 TASK = 'ctdet' # or 'multi_pose' for human pose estimation
 opt = opts().init('{} --load_model {} --arch {}'.format(TASK, MODEL_PATH, ARCH).split(' '))
 
-image_ext = ['jpg', 'jpeg', 'png', 'webp']
-video_ext = ['mp4', 'mov', 'avi', 'mkv']
-time_stats = ['tot', 'load', 'pre', 'net', 'dec', 'post', 'merge']
+#vis_thresh
+opt.vis_thresh = 0.5
+
+
+#input_type
+opt.input_type = 'vid'   # for video, 'vid',  for webcam, 'webcam', for ip camera, 'ipcam'
+
+#------------------------------
+# for video
+opt.vid_path = 'MOT16-11.mp4'  #
+#------------------------------
+# for webcam  (webcam device index is required)
+opt.webcam_ind = 0
+#------------------------------
+# for ipcamera (camera url is required.this is dahua url format)
+opt.ipcam_url = 'rtsp://{0}:{1}@IPAddress:554/cam/realmonitor?channel={2}&subtype=1'
+# ipcamera camera number
+opt.ipcam_no = 8
+#------------------------------
 
 
 from deep_sort import DeepSort
@@ -39,13 +51,13 @@ import time
 
 def bbox_to_xywh_cls_conf(bbox):
     person_id = 1
-    confidence = 0.5
+    #confidence = 0.5
     # only person
     bbox = bbox[person_id]
 
-    if any(bbox[:, 4] > confidence):
+    if any(bbox[:, 4] > opt.vis_thresh):
 
-        bbox = bbox[bbox[:, 4] > confidence, :]
+        bbox = bbox[bbox[:, 4] > opt.vis_thresh, :]
         bbox[:, 2] = bbox[:, 2] - bbox[:, 0]  #
         bbox[:, 3] = bbox[:, 3] - bbox[:, 1]  #
 
@@ -59,27 +71,42 @@ def bbox_to_xywh_cls_conf(bbox):
 class Detector(object):
     def __init__(self, opt):
         self.vdo = cv2.VideoCapture()
-        #self.yolo_info = YOLO3("YOLO3/cfg/yolo_v3.cfg", "YOLO3/yolov3.weights", "YOLO3/cfg/coco.names", is_xywh=True)
 
 
         #centerNet detector
         self.detector = detector_factory[opt.task](opt)
         self.deepsort = DeepSort("deep/checkpoint/ckpt.t7")
-        # self.deepsort = DeepSort("deep/checkpoint/ori_net_last.pth")
 
 
         self.write_video = True
 
     def open(self, video_path):
-        assert os.path.isfile(video_path), "Error: path error"
-        self.vdo.open(video_path)
+
+        if opt.input_type == 'webcam':
+            self.vdo.open(opt.webcam_ind)
+
+        elif opt.input_type == 'ipcam':
+            # load cam key, secret
+            with open("cam_secret.txt") as f:
+                lines = f.readlines()
+                key = lines[0].strip()
+                secret = lines[1].strip()
+
+            self.vdo.open(opt.ipcam_url.format(key, secret, opt.ipcam_no))
+
+        # video
+        else :
+            assert os.path.isfile(opt.vid_path), "Error: path error"
+            self.vdo.open(opt.vid_path)
+
         self.im_width = int(self.vdo.get(cv2.CAP_PROP_FRAME_WIDTH))
         self.im_height = int(self.vdo.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
         self.area = 0, 0, self.im_width, self.im_height
         if self.write_video:
             fourcc = cv2.VideoWriter_fourcc(*'MJPG')
             self.output = cv2.VideoWriter("demo1.avi", fourcc, 20, (self.im_width, self.im_height))
-        return self.vdo.isOpened()
+        #return self.vdo.isOpened()
 
 
 

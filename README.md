@@ -32,6 +32,33 @@ Using sample video, we can track multi person.
 python demo_centernet_deepsort.py
 ```
 
+
+for webcam, modify two lines
+
+```
+opt.input_type = 'webcam'
+//webcam device number 
+opt.webcam_ind = 0 
+```
+
+for ip camera, modify three lines 
+
+```
+opt.input_type = 'ipcam'
+//ip camera url (this is DAHUA camera format)
+opt.ipcam_url = 'rtsp://{0}:{1}@IPAddress:554/cam/realmonitor?channel={2}&subtype=1'
+//ipcamera camera number
+opt.ipcam_no = 1
+```
+
+and create a login file ('cam_secret.txt') containing a camera ID and password    
+for example, 
+```
+kim  
+1234
+```
+
+
 In test step, we used 'ctdet_coco_dla_2x.pth' model in [centernet model zoo](https://github.com/xingyizhou/CenterNet/blob/master/readme/MODEL_ZOO.md).   
 Change two lines if want to use another model(e.g resdcn18.pth).
 
@@ -53,11 +80,11 @@ GPU : one 1080ti 11G
 
 ![Alt Text](https://github.com/kimyoon-young/centerNet-deep-sort/blob/master/centernet_vs_yolo3.gif)
 
-(Left) CenterNet based tracker: fps 18-23  /  (Rright) original yolov3 version[2] : fps 8-9 
+(Left) CenterNet based tracker: fps 18~23 (vis_thresh=0.5) /  (Rright) original yolov3 version[2] : fps 11-12 (conf_thresh=0.5, nms_thresh=0.4) 
 
-For ctdet_coco_resdcn18 model, fps is 30~35. 
+For ctdet_coco_resdcn18 model, fps is 30~35 (vis_thresh=0.5). 
 
-Optionally, using this [treading module[4]](https://www.pyimagesearch.com/2017/02/06/faster-video-file-fps-with-cv2-videocapture-and-opencv/) can slightly improves fps (from 0.4 to 1).
+Optionally, using this [threading module[4]](https://www.pyimagesearch.com/2017/02/06/faster-video-file-fps-with-cv2-videocapture-and-opencv/) can slightly improves fps (plus less than 1 fps).
 
 ```
 pip install imutils
@@ -75,7 +102,6 @@ def more(self):
 
 ```
 
- 
 
 ```
 python demo_centernet_deepsort_thread.py
