@@ -2,6 +2,9 @@ import os
 import cv2
 import numpy as np
 
+# In order to solve CUDA OOM issue
+import torch
+torch.backends.cudnn.deterministic = True
 
 #CenterNet
 import sys
